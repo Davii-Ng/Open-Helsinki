@@ -1,5 +1,6 @@
 import { useState } from 'react'
 
+console.log("hello world")
 
 const App = () => {
   const anecdotes = [
