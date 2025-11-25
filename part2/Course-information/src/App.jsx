@@ -4,18 +4,29 @@ const Parts = ({part}) =>{
   )
 }
 
+
+const Total = ({array}) =>{
+  console.log(array)
+  const sum = array.reduce((accumulator, part) => accumulator + part.exercises, 0);
+  return (
+    <p><strong>total of {sum} exercises</strong></p>
+  )
+}
+
 const Content = ({parts}) => {
   return(
   <div>
     {parts.map(part => <Parts key = {part.id} part = {part}/>)}
+    <Total array={parts}/>
   </div>
   )
 }
 
+
+
+
 const Course = ({course}) =>{ 
   
-  console.log(course)
-  console.log()
   return(
     <div>
     <h1>{course.name}</h1>
