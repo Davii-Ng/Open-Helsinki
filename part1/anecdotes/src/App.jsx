@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
-console.log("hello world")
+const votes = {0:1, 1:2, 2:3, 3:4, 4:5, 5:6, 6:7, 7:7}
+
 
 const App = () => {
   const anecdotes = [
@@ -16,12 +17,36 @@ const App = () => {
    
   
   const [selected, setSelected] = useState(0)
-  console.log(anecdotes, selected)
+  const copy = {...votes}
+
+
+  const  mostSelectedPhrase = () =>{
+    let mostSelected = 0
+    let selectedPhrase = ''
+    for (let i = 0; i < 8; i ++){
+      if (votes[i] > mostSelected){
+        mostSelected = votes[i]
+        selectedPhrase = anecdotes[i]
+      }else if (votes[i] == mostSelected){
+        selectedPhrase += ' '+ anecdotes[i]
+      } 
+    }
+    return [selectedPhrase, mostSelected]
+}
+
+  const [a, b] = mostSelectedPhrase()
+
+
+
   return (
     <div>
       {anecdotes[selected]}
-      <p></p>
+      <p>has {copy[selected]} votes</p>
+      <button onClick = {()=> {copy[selected] += 1}}>vote</button>
       <button onClick={()=> setSelected(Math.floor(Math.random() *(anecdotes.length)))}>next anecdotes</button>
+      <h1>Anecdotes with most votes</h1>
+      {a}
+      <p>has {b} votes</p>
     </div>
   )
 }
