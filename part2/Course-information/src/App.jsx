@@ -6,7 +6,6 @@ const Parts = ({part}) =>{
 
 
 const Total = ({array}) =>{
-  console.log(array)
   const sum = array.reduce((accumulator, part) => accumulator + part.exercises, 0);
   return (
     <p><strong>total of {sum} exercises</strong></p>
@@ -26,7 +25,6 @@ const Content = ({parts}) => {
 
 
 const Course = ({course}) =>{ 
-  
   return(
     <div>
     <h1>{course.name}</h1>
