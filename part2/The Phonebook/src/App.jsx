@@ -13,9 +13,21 @@ const App = () => {
   ]) 
   const [newName, setNewName] = useState('')
 
+  const CheckDuplicate = () => {
+    for (let i = 0; i < persons.length; i++){
+      if (persons[i].name ===  newName){
+        return true
+      } 
+    }
+    return false
+  }
 
   const addName = (event) =>{
     event.preventDefault()
+    if (CheckDuplicate()){
+      alert(`${newName} is already added to phonebook`)
+      return
+    }
     const nameObject = { name: newName }
     setPersons(persons.concat(nameObject))
     setNewName('')
@@ -31,7 +43,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <form onSubmit={addName}>
+      <form onSubmit = {addName}>
         <div>
           name: <input value = {newName} onChange = {handleNameChange}/>
         </div>
