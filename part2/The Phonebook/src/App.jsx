@@ -3,18 +3,17 @@ import Filter from './Filter';
 import PersonForm from './PersonForm';
 import Persons from './PersonName';
 import axios from 'axios';
+import getAll from './services/Person';
+
 
 const App = () => {
   const [persons, setPersons] = useState([]);
 
   useEffect(() => {
     console.log('effect')
-    axios
-      .get('http://localhost:3001/persons')
-      .then(response => {
-        console.log('promise fulfilled')
-        setPersons(response.data)
-      })
+    getAll.getAll().then(initialPersons => {
+      setPersons(initialPersons)
+    });
   }, []);
 
   const [newName, setNewName] = useState('');
